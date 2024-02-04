@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var pawn_id := -1
 
 
 
