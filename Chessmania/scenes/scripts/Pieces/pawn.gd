@@ -1,11 +1,17 @@
 extends Node2D
 
-var pawn_id := -1
+@onready var icon = $icon
 
+var b_pawn_icon = preload("res://assets/BlackPieces/blackPawn.png")
+var w_pawn_icon = preload("res://assets/WhitePieces/whitePawn.png")
+var p_id := -1
+var p_type: int
 
 
 func _ready():
-	pass
+	if p_type == 0:
+		icon.texture = b_pawn_icon
+	else: icon.texture = w_pawn_icon
 
 
 

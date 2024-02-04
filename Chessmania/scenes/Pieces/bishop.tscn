@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://barvo7jjsdqqe"]
+
+[ext_resource type="Script" path="res://scenes/scripts/Pieces/bishop.gd" id="1_qi5yh"]
+
+[node name="bishop" type="Node2D"]
+script = ExtResource("1_qi5yh")
+
+[node name="icon" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
