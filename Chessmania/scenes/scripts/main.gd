@@ -2,14 +2,18 @@ extends Control
 
 @onready var grid = $chess_board/chess_grid
 @onready var chess_board = $chess_board
-
+@onready var locker = preload("res://scenes/locker.tscn")
 @onready var square = preload("res://scenes/square.tscn")
+
+var posx = 0
+var posy = 4
 
 var dark_square = Color("#36454F")
 var light_square = Color("#D3D3D3")
 var starting_pos = "rnbqkbnr/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKBNR"
 var grid_square_id := []
 var piece_array := []
+var created_locker
 
 func _ready():
 	for i in range(80):
@@ -19,8 +23,32 @@ func _ready():
 	piece_array.resize(80)
 	piece_array.fill(0)
 	_position_starter(starting_pos)
+	created_locker = _create_locker()
+	for el in piece_array:
+		if typeof(el) != typeof(0) :
+			print(el)
+	
 
 func _process(_delta):
+	await get_tree().create_timer(0.1).timeout
+	
+	if Input.is_action_just_pressed("down"):
+		if ((posx+1)*8)+posy < 80 and ((posx+1)*8)+posy>=0 :
+			created_locker.global_position = grid_square_id[((posx+1)*8)+posy].global_position
+			posx += 1
+	if Input.is_action_just_pressed("up"):
+		if ((posx-1)*8)+posy < 80 and ((posx-1)*8)+posy>=0 :
+			created_locker.global_position = grid_square_id[((posx-1)*8)+posy].global_position
+			posx -= 1
+	if Input.is_action_just_pressed("right"):
+		if (posx*8)+posy+1 < 80 and (posx*8)+posy+1>=0 :
+			created_locker.global_position = grid_square_id[(posx*8)+posy+1].global_position
+			posy += 1
+	if Input.is_action_just_pressed("left"):
+		if (posx*8)+posy-1 < 80 and (posx*8)+posy-1>=0 :
+			created_locker.global_position = grid_square_id[(posx*8)+posy-1].global_position
+			posy -= 1
+	
 	pass
 
 # function that colors the squares
@@ -63,3 +91,9 @@ func _create_piece(piece, location) -> void:
 	new_piece.global_position = grid_square_id[location].global_position
 	piece_array[location] = new_piece
 	new_piece.p_id = location
+
+func _create_locker():
+	var new_locker = locker.instantiate()
+	chess_board.add_child(new_locker)
+	new_locker.global_position = piece_array[4].global_position
+	return new_locker
