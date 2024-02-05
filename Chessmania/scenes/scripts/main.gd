@@ -20,6 +20,7 @@ var piece_array := []
 var colored_array := []
 var created_locker
 
+
 func _ready():
 	for i in range(80):
 		_create_square()
@@ -31,7 +32,7 @@ func _ready():
 	created_locker = _create_locker()
 	prevpos = created_locker.global_position
 	signal_coller()
-	
+
 
 func signal_coller():
 	Signals.connect('locker_entered', _on_show_move)
@@ -40,33 +41,55 @@ func signal_coller():
 func _on_show_move(arg):
 	if arg == "w_pawn" or arg == "b_pawn":
 		_pawn_move(arg)
+
 func _on_hide_move():
 	for i in range(colored_array.size()):
 		colored_array[i].get_node("mov").color = transparent
 	colored_array.clear()
 
-
 func _process(_delta):
 	await get_tree().create_timer(0.1).timeout
-	if Input.is_action_just_pressed("down"):
+	_handle_locker_mov()
+
+var down_pressed = false
+var up_pressed = false
+var right_pressed = false
+var left_pressed = false
+
+func _handle_locker_mov():
+	if Input.is_action_just_pressed("down") and not down_pressed:
+		down_pressed = true
 		if ((posx+1)*8)+posy < 80 and ((posx+1)*8)+posy>=0 :
 			created_locker.global_position = grid_square_id[((posx+1)*8)+posy].global_position
+			print("locker's pos: ", created_locker.global_position)
+			print("square's pos: ", grid_square_id[((posx+1)*8)+posy].global_position)
 			posx += 1
+	elif not Input.is_action_pressed("down"):
+		down_pressed = false
 
-	if Input.is_action_just_pressed("up"):
+	if Input.is_action_just_pressed("up") and not up_pressed:
+		up_pressed = true
 		if ((posx-1)*8)+posy < 80 and ((posx-1)*8)+posy>=0 :
 			created_locker.global_position = grid_square_id[((posx-1)*8)+posy].global_position
 			posx -= 1
+	elif not Input.is_action_pressed("up"):
+		up_pressed = false
 
-	if Input.is_action_just_pressed("right"):
+	if Input.is_action_just_pressed("right") and not right_pressed:
+		right_pressed = true
 		if (posx*8)+posy+1 < 80 and (posx*8)+posy+1>=0 :
 			created_locker.global_position = grid_square_id[(posx*8)+posy+1].global_position
 			posy += 1
-		
-	if Input.is_action_just_pressed("left"):
+	elif Input.is_action_pressed("right"):
+		right_pressed = false
+
+	if Input.is_action_just_pressed("left") and not left_pressed:
+		left_pressed = true
 		if (posx*8)+posy-1 < 80 and (posx*8)+posy-1>=0 :
 			created_locker.global_position = grid_square_id[(posx*8)+posy-1].global_position
 			posy -= 1
+	elif Input.is_action_pressed("left"):
+		left_pressed = false
 
 
 # function that colors the squares
@@ -137,6 +160,3 @@ func _pawn_move(name):
 	pass
 
 #func _pawn_attack()
-
-
-
