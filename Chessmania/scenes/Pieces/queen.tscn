@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cu4reo42atklj"]
+[gd_scene load_steps=3 format=3 uid="uid://cu4reo42atklj"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Pieces/queen.gd" id="1_6e0ws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_slrk3"]
+size = Vector2(36, 34)
 
 [node name="queen" type="Node2D"]
 script = ExtResource("1_6e0ws")
@@ -8,3 +11,10 @@ script = ExtResource("1_6e0ws")
 [node name="icon" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="area_queen" type="Area2D" parent="."]
+
+[node name="collide_queen" type="CollisionShape2D" parent="area_queen"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_slrk3")
+metadata/_edit_group_ = true

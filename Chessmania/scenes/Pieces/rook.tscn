@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5afgswdxohih"]
+[gd_scene load_steps=3 format=3 uid="uid://c5afgswdxohih"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Pieces/rook.gd" id="1_ji7ns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20r1x"]
+size = Vector2(36, 34)
 
 [node name="rook" type="Node2D"]
 script = ExtResource("1_ji7ns")
@@ -8,3 +11,10 @@ script = ExtResource("1_ji7ns")
 [node name="icon" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="area_rook" type="Area2D" parent="."]
+
+[node name="collide_rook" type="CollisionShape2D" parent="area_rook"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_20r1x")
+metadata/_edit_group_ = true

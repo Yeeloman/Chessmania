@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bi8erj4nmcv5g"]
+[gd_scene load_steps=3 format=3 uid="uid://bi8erj4nmcv5g"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Pieces/knight.gd" id="1_pamma"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lo7nl"]
+size = Vector2(36, 34)
 
 [node name="knight" type="Node2D"]
 script = ExtResource("1_pamma")
@@ -8,3 +11,10 @@ script = ExtResource("1_pamma")
 [node name="icon" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="area_knight" type="Area2D" parent="."]
+
+[node name="collide_knight" type="CollisionShape2D" parent="area_knight"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_lo7nl")
+metadata/_edit_group_ = true

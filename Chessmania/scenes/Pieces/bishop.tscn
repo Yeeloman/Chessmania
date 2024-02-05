@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://barvo7jjsdqqe"]
+[gd_scene load_steps=3 format=3 uid="uid://barvo7jjsdqqe"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Pieces/bishop.gd" id="1_qi5yh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u7njx"]
+size = Vector2(36, 34)
 
 [node name="bishop" type="Node2D"]
 script = ExtResource("1_qi5yh")
@@ -8,3 +11,10 @@ script = ExtResource("1_qi5yh")
 [node name="icon" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="area_bishop" type="Area2D" parent="."]
+
+[node name="collide_bishop" type="CollisionShape2D" parent="area_bishop"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_u7njx")
+metadata/_edit_group_ = true

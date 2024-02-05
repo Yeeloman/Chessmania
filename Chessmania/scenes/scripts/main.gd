@@ -11,7 +11,8 @@ var prevpos
 
 var dark_square = Color("#36454F")
 var light_square = Color("#D3D3D3")
-var move_color = Color("#ff4444")
+var move_color = Color("#3EA3AC90")
+var attack_color = Color("#AC473E90")
 var transparent = Color("#fa6ca000")
 var starting_pos = "rnbqkbnr/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKBNR"
 var grid_square_id := []
