@@ -57,7 +57,7 @@ func _process(_delta):
 		if ((posx-1)*8)+posy < 80 and ((posx-1)*8)+posy>=0 :
 			created_locker.global_position = grid_square_id[((posx-1)*8)+posy].global_position
 			posx -= 1
-		
+
 	if Input.is_action_just_pressed("right"):
 		if (posx*8)+posy+1 < 80 and (posx*8)+posy+1>=0 :
 			created_locker.global_position = grid_square_id[(posx*8)+posy+1].global_position
