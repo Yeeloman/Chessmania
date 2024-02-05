@@ -44,9 +44,6 @@ func _on_hide_move():
 	for i in range(colored_array.size()):
 		colored_array[i].get_node("mov").color = transparent
 	colored_array.clear()
-	#for i in range(len(colored_array)):
-		#print(i)
-	#print(colored_array)
 
 
 func _process(_delta):
@@ -70,13 +67,8 @@ func _process(_delta):
 		if (posx*8)+posy-1 < 80 and (posx*8)+posy-1>=0 :
 			created_locker.global_position = grid_square_id[(posx*8)+posy-1].global_position
 			posy -= 1
-		
-	
-	#for el in piece_array:
-		#if typeof(el) != typeof(0) :
-			#if el.global_position == created_locker.global_position:
-				#_show_move(el.p_name)
-					
+
+
 # function that colors the squares
 func squares_coloring() -> void:
 	var color_bit = 0
