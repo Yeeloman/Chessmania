@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 DatAhandler="*res://scenes/scripts/DATAhandler.gd"
+Ma="*res://scenes/scripts/ma.gd"
+Signals="*res://scenes/scripts/signals.gd"
 
 [display]
 

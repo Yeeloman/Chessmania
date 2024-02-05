@@ -5,6 +5,7 @@ var b_queen_icon = preload("res://assets/BlackPieces/blackQueen.png")
 var w_queen_icon = preload("res://assets/WhitePieces/whiteQueen.png")
 var p_id := -1
 var p_type: int
+var p_name : String
 
 
 func _ready():

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1lwhu86hovjc"]
+[gd_scene load_steps=3 format=3 uid="uid://b1lwhu86hovjc"]
 
 [ext_resource type="Script" path="res://scenes/scripts/Pieces/pawn.gd" id="1_gjdeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_asuow"]
+size = Vector2(34, 32)
 
 [node name="pawn" type="Node2D"]
 script = ExtResource("1_gjdeu")
@@ -8,3 +11,12 @@ script = ExtResource("1_gjdeu")
 [node name="icon" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="pawn_area" type="Area2D" parent="."]
+
+[node name="pawn_collision" type="CollisionShape2D" parent="pawn_area"]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_asuow")
+
+[connection signal="area_entered" from="pawn_area" to="." method="_on_pawn_area_area_entered"]
+[connection signal="area_exited" from="pawn_area" to="." method="_on_pawn_area_area_exited"]
