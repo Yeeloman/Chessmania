@@ -20,23 +20,18 @@ func _ready():
 func _process(_delta):
 	await get_tree().create_timer(0.1).timeout
 	HLocker._handle_locker_mov()
-	_on_pawn_move()
+	PieceMovements._on_piece_move()
 
 
 # calls the signals from the ready function
 func signal_caller():
 	Signals.connect('locker_entered', PieceMovements._match_show_move)
-	Signals.connect('locker_exited', _on_hide_move)
+	Signals.connect('locker_exited', PieceMovements._on_hide_move)
 	Signals.connect('locker_active', HLocker._on_locker_active)
 	Signals.connect('locker_passive', HLocker._on_locker_passive)
 
 
-# undo the coloring move changes
-func _on_hide_move():
-	if GV.created_locker.is_active == false:
-		for i in range(GV.colored_array.size()):
-			GV.colored_array[i].get_node("mov").color = GV.transparent
-		GV.colored_array.clear()
+
 
 
 # function that colors the squares
@@ -62,23 +57,3 @@ func _position_starter(starting_pos: String) -> void:
 		else:
 			CreateFunc._create_piece(chess_board, DatAhandler.pieces_dic[i], board_idx)
 			board_idx += 1
-
-
-# moves the target piece
-func _on_pawn_move():
-	if GV.created_locker.is_active == true : 
-		if Input.is_action_just_pressed("move") :
-			for el in GV.colored_array:
-				if el.global_position == GV.created_locker.global_position:
-					GV.piece_active.global_position = GV.created_locker.global_position
-					GV.piece_array[(GV.prev_posx*8)+GV.prev_posy] = 0
-					GV.piece_array[(GV.posx*8)+GV.posy] = GV.piece_active
-					_mini_hide_move()
-	pass
-
-
-# hide the piece movement after moving the piece
-func _mini_hide_move():
-	for i in range(GV.colored_array.size()):
-		GV.colored_array[i].get_node("mov").color = GV.transparent
-	GV.colored_array.clear()

@@ -111,3 +111,31 @@ func _ready():
 
 func _process(_delta):
 	pass
+
+
+# moves the target piece
+func _on_piece_move():
+	if GV.created_locker.is_active == true : 
+		if Input.is_action_just_pressed("move") :
+			for el in GV.colored_array:
+				if el.global_position == GV.created_locker.global_position:
+					GV.piece_active.global_position = GV.created_locker.global_position
+					GV.piece_array[(GV.prev_posx*8)+GV.prev_posy] = 0
+					GV.piece_array[(GV.posx*8)+GV.posy] = GV.piece_active
+					_mini_hide_move()
+	pass
+
+
+# hide the piece movement after moving the piece
+func _mini_hide_move():
+	for i in range(GV.colored_array.size()):
+		GV.colored_array[i].get_node("mov").color = GV.transparent
+	GV.colored_array.clear()
+
+
+# undo the coloring move changes
+func _on_hide_move():
+	if GV.created_locker.is_active == false:
+		for i in range(GV.colored_array.size()):
+			GV.colored_array[i].get_node("mov").color = GV.transparent
+		GV.colored_array.clear()
