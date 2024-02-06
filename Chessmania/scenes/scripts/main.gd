@@ -16,15 +16,24 @@ func _ready():
 	_position_starter(GV.starting_pos)
 	GV.created_locker = _create_locker()
 	GV.prevpos = GV.created_locker.global_position
-	signal_coller()
+	signal_caller()
 
 
-func signal_coller():
+func _process(_delta):
+	await get_tree().create_timer(0.1).timeout
+	_handle_locker_mov()
+	_on_pawn_move()
+
+
+# calls the signals from the ready function
+func signal_caller():
 	Signals.connect('locker_entered', _on_show_move)
 	Signals.connect('locker_exited', _on_hide_move)
 	Signals.connect('locker_active', _on_locker_active)
 	Signals.connect('locker_passive', _on_locker_passive)
 
+
+# handles the state where the locker is active
 func _on_locker_active():
 	print("locker is active")
 	Signals.disconnect('locker_active',_on_locker_active)
@@ -37,39 +46,32 @@ func _on_locker_active():
 				GV.prev_posy = GV.posy
 
 
-func _on_show_attacks():
-	pass
-
+# handle the state where the locker is passive
 func _on_locker_passive():
 	print("locker is passive")
 	Signals.disconnect('locker_passive',_on_locker_passive)
 	Signals.connect('locker_active', _on_locker_active)
 
+
+# calls the function that show the moves
 func _on_show_move(arg):
 	PieceMovements._match_show_move(arg)
 
+
+# undo the coloring move changes
 func _on_hide_move():
 	if GV.created_locker.is_active == false:
 		for i in range(GV.colored_array.size()):
 			GV.colored_array[i].get_node("mov").color = GV.transparent
 		GV.colored_array.clear()
 
-func _process(_delta):
-	await get_tree().create_timer(0.1).timeout
-	_handle_locker_mov()
-	_handle_locker_state()
-	_on_pawn_move(_delta)
-	
-
-func _handle_locker_state():
-	
-	pass
 
 var down_pressed = false
 var up_pressed = false
 var right_pressed = false
 var left_pressed = false
 
+# handles the locker instance movement
 func _handle_locker_mov():
 	if Input.is_action_just_pressed("down") and not down_pressed:
 		down_pressed = true
@@ -116,13 +118,14 @@ func squares_coloring() -> void:
 			color_bit = 1
 		else: color_bit = 0
 
+
 # function that creates instances of the square scene
-# then add them as children to the grid
 func _create_square():
 	var created_square = square.instantiate()
 	created_square.square_id = GV.grid_square_id.size()
 	grid.add_child(created_square)
 	GV.grid_square_id.push_back(created_square)
+
 
 # instantiate the pieces to their starting positions
 func _position_starter(starting_pos: String) -> void:
@@ -135,6 +138,7 @@ func _position_starter(starting_pos: String) -> void:
 			_create_piece(DatAhandler.pieces_dic[i], board_idx)
 			board_idx += 1
 
+
 # instantiate each piece then add it as a child to the chess board
 func _create_piece(piece, location) -> void:
 	var new_piece_packed = piece.p_scene
@@ -146,6 +150,8 @@ func _create_piece(piece, location) -> void:
 	GV.piece_array[location] = new_piece
 	new_piece.p_id = location
 
+
+# creates the locker instance
 func _create_locker():
 	var new_locker = locker.instantiate()
 	chess_board.add_child(new_locker)
@@ -154,8 +160,8 @@ func _create_locker():
 	return new_locker
 
 
-
-func _on_pawn_move(delta):
+# moves the target piece
+func _on_pawn_move():
 	if GV.created_locker.is_active == true : 
 		if Input.is_action_just_pressed("move") :
 			for el in GV.colored_array:
@@ -166,53 +172,9 @@ func _on_pawn_move(delta):
 					_mini_hide_move()
 	pass
 
+
+# hide the piece movement after moving the piece
 func _mini_hide_move():
 	for i in range(GV.colored_array.size()):
 		GV.colored_array[i].get_node("mov").color = GV.transparent
 	GV.colored_array.clear()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#func _pawn_move(name):
-	#if created_locker.is_active == false :
-		#if name == "w_pawn" :
-			#var move = grid_square_id[((posx+1)*8)+posy]
-			#var move_two = grid_square_id[((posx+2)*8)+posy]
-			#move.get_node("mov").color = move_color
-			#move_two.get_node("mov").color = move_color
-			#await get_tree().create_timer(0.1).timeout
-			#colored_array.push_back(move)
-			#colored_array.push_back(move_two)
-		#if name == "b_pawn":
-			#var move = grid_square_id[((posx-1)*8)+posy]
-			#var move_two = grid_square_id[((posx-2)*8)+posy]
-			#move.get_node("mov").color = move_color
-			#move_two.get_node("mov").color = move_color
-			#await get_tree().create_timer(0.1).timeout
-			#colored_array.push_back(move)
-			#colored_array.push_back(move_two)
-	#pass
