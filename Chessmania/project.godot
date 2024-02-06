@@ -21,6 +21,8 @@ DatAhandler="*res://scenes/scripts/DATAhandler.gd"
 Signals="*res://scenes/scripts/signals.gd"
 PieceMovements="*res://scenes/scripts/piece_movements.gd"
 GV="*res://scenes/scripts/global_vars.gd"
+CreateFunc="*res://scenes/scripts/create_functions.gd"
+HLocker="*res://scenes/scripts/handle_locker.gd"
 
 [display]
 
