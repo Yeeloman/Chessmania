@@ -5,37 +5,17 @@ extends Control
 @onready var locker = preload("res://scenes/locker.tscn")
 @onready var square = preload("res://scenes/square.tscn")
 
-var posx = 0
-var posy = 3
-var prevpos 
-
-var dark_square = Color("#36454F")
-var light_square = Color("#D3D3D3")
-var move_color = Color("#3EA3AC90")
-var attack_color = Color("#AC473E90")
-var transparent = Color("#fa6ca000")
-var active_color_locker = Color("#0000FF90")
-var passive_color_locker = Color("#00FFAF90")
-var starting_pos = "rnbqkbnr/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKBNR"
-var grid_square_id := []
-var piece_array := []
-var colored_array := []
-var created_locker
-var piece_active
-var arr = [1,2,3]
-var prev_posx
-var prev_posy
 
 func _ready():
 	for i in range(80):
 		_create_square()
 	await get_tree().create_timer(0.1).timeout
 	squares_coloring()
-	piece_array.resize(80)
-	piece_array.fill(0)
-	_position_starter(starting_pos)
-	created_locker = _create_locker()
-	prevpos = created_locker.global_position
+	GV.piece_array.resize(80)
+	GV.piece_array.fill(0)
+	_position_starter(GV.starting_pos)
+	GV.created_locker = _create_locker()
+	GV.prevpos = GV.created_locker.global_position
 	signal_coller()
 
 
@@ -49,12 +29,12 @@ func _on_locker_active():
 	print("locker is active")
 	Signals.disconnect('locker_active',_on_locker_active)
 	Signals.connect('locker_passive', _on_locker_passive)
-	for el in piece_array :
+	for el in GV.piece_array :
 		if typeof(el) != typeof(0) :
-			if el.global_position == created_locker.global_position : 
-				piece_active = el
-				prev_posx = posx
-				prev_posy = posy
+			if el.global_position == GV.created_locker.global_position : 
+				GV.piece_active = el
+				GV.prev_posx = GV.posx
+				GV.prev_posy = GV.posy
 
 
 func _on_show_attacks():
@@ -64,16 +44,15 @@ func _on_locker_passive():
 	print("locker is passive")
 	Signals.disconnect('locker_passive',_on_locker_passive)
 	Signals.connect('locker_active', _on_locker_active)
-	
 
 func _on_show_move(arg):
-	PieceMovements._match_show_move(grid_square_id, arg, piece_array, posx, posy, created_locker, colored_array)
+	PieceMovements._match_show_move(arg)
 
 func _on_hide_move():
-	if created_locker.is_active == false:
-		for i in range(colored_array.size()):
-			colored_array[i].get_node("mov").color = transparent
-		colored_array.clear()
+	if GV.created_locker.is_active == false:
+		for i in range(GV.colored_array.size()):
+			GV.colored_array[i].get_node("mov").color = GV.transparent
+		GV.colored_array.clear()
 
 func _process(_delta):
 	await get_tree().create_timer(0.1).timeout
@@ -94,33 +73,33 @@ var left_pressed = false
 func _handle_locker_mov():
 	if Input.is_action_just_pressed("down") and not down_pressed:
 		down_pressed = true
-		if ((posx+1)*8)+posy < 80 and ((posx+1)*8)+posy>=0 :
-			created_locker.global_position = grid_square_id[((posx+1)*8)+posy].global_position
-			posx += 1
+		if ((GV.posx+1)*8)+GV.posy < 80 and ((GV.posx+1)*8)+GV.posy>=0 :
+			GV.created_locker.global_position = GV.grid_square_id[((GV.posx+1)*8)+GV.posy].global_position
+			GV.posx += 1
 	elif not Input.is_action_pressed("down"):
 		down_pressed = false
 
 	if Input.is_action_just_pressed("up") and not up_pressed:
 		up_pressed = true
-		if ((posx-1)*8)+posy < 80 and ((posx-1)*8)+posy>=0 :
-			created_locker.global_position = grid_square_id[((posx-1)*8)+posy].global_position
-			posx -= 1
+		if ((GV.posx-1)*8)+GV.posy < 80 and ((GV.posx-1)*8)+GV.posy>=0 :
+			GV.created_locker.global_position = GV.grid_square_id[((GV.posx-1)*8)+GV.posy].global_position
+			GV.posx -= 1
 	elif not Input.is_action_pressed("up"):
 		up_pressed = false
 
 	if Input.is_action_just_pressed("right") and not right_pressed:
 		right_pressed = true
-		if (posx*8)+posy+1 < 80 and (posx*8)+posy+1>=0 :
-			created_locker.global_position = grid_square_id[(posx*8)+posy+1].global_position
-			posy += 1
+		if (GV.posx*8)+GV.posy+1 < 80 and (GV.posx*8)+GV.posy+1>=0 :
+			GV.created_locker.global_position = GV.grid_square_id[(GV.posx*8)+GV.posy+1].global_position
+			GV.posy += 1
 	elif Input.is_action_pressed("right"):
 		right_pressed = false
 
 	if Input.is_action_just_pressed("left") and not left_pressed:
 		left_pressed = true
-		if (posx*8)+posy-1 < 80 and (posx*8)+posy-1>=0 :
-			created_locker.global_position = grid_square_id[(posx*8)+posy-1].global_position
-			posy -= 1
+		if (GV.posx*8)+GV.posy-1 < 80 and (GV.posx*8)+GV.posy-1>=0 :
+			GV.created_locker.global_position = GV.grid_square_id[(GV.posx*8)+GV.posy-1].global_position
+			GV.posy -= 1
 	elif Input.is_action_pressed("left"):
 		left_pressed = false
 
@@ -131,8 +110,8 @@ func squares_coloring() -> void:
 	for i in range(10):
 		for j in range(8):
 			if j % 2 == color_bit:
-				grid_square_id[i*8+j]._set_bg(dark_square)
-			else: grid_square_id[i*8+j]._set_bg(light_square)
+				GV.grid_square_id[i*8+j]._set_bg(GV.dark_square)
+			else: GV.grid_square_id[i*8+j]._set_bg(GV.light_square)
 		if color_bit == 0:
 			color_bit = 1
 		else: color_bit = 0
@@ -141,9 +120,9 @@ func squares_coloring() -> void:
 # then add them as children to the grid
 func _create_square():
 	var created_square = square.instantiate()
-	created_square.square_id = grid_square_id.size()
+	created_square.square_id = GV.grid_square_id.size()
 	grid.add_child(created_square)
-	grid_square_id.push_back(created_square)
+	GV.grid_square_id.push_back(created_square)
 
 # instantiate the pieces to their starting positions
 func _position_starter(starting_pos: String) -> void:
@@ -163,34 +142,34 @@ func _create_piece(piece, location) -> void:
 	new_piece.p_type = piece.p_type
 	new_piece.p_name = piece.p_name
 	chess_board.add_child(new_piece)
-	new_piece.global_position = grid_square_id[location].global_position
-	piece_array[location] = new_piece
+	new_piece.global_position = GV.grid_square_id[location].global_position
+	GV.piece_array[location] = new_piece
 	new_piece.p_id = location
 
 func _create_locker():
 	var new_locker = locker.instantiate()
 	chess_board.add_child(new_locker)
-	new_locker.global_position = piece_array[3].global_position
-	new_locker.get_node("locker_rect").color = passive_color_locker
+	new_locker.global_position = GV.piece_array[3].global_position
+	new_locker.get_node("locker_rect").color = GV.passive_color_locker
 	return new_locker
 
 
 
 func _on_pawn_move(delta):
-	if created_locker.is_active == true : 
+	if GV.created_locker.is_active == true : 
 		if Input.is_action_just_pressed("move") :
-			for el in colored_array:
-				if el.global_position == created_locker.global_position:
-					piece_active.global_position = created_locker.global_position
-					piece_array[(prev_posx*8)+prev_posy] = 0
-					piece_array[(posx*8)+posy] = piece_active
+			for el in GV.colored_array:
+				if el.global_position == GV.created_locker.global_position:
+					GV.piece_active.global_position = GV.created_locker.global_position
+					GV.piece_array[(GV.prev_posx*8)+GV.prev_posy] = 0
+					GV.piece_array[(GV.posx*8)+GV.posy] = GV.piece_active
 					_mini_hide_move()
 	pass
 
 func _mini_hide_move():
-	for i in range(colored_array.size()):
-		colored_array[i].get_node("mov").color = transparent
-	colored_array.clear()
+	for i in range(GV.colored_array.size()):
+		GV.colored_array[i].get_node("mov").color = GV.transparent
+	GV.colored_array.clear()
 
 
 

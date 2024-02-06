@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 DatAhandler="*res://scenes/scripts/DATAhandler.gd"
-Ma="*res://scenes/scripts/ma.gd"
 Signals="*res://scenes/scripts/signals.gd"
 PieceMovements="*res://scenes/scripts/piece_movements.gd"
+GV="*res://scenes/scripts/global_vars.gd"
 
 [display]
 
