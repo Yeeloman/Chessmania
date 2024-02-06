@@ -18,3 +18,6 @@ offset_bottom = 40.0
 position = Vector2(20, 20)
 shape = SubResource("RectangleShape2D_lo7nl")
 metadata/_edit_group_ = true
+
+[connection signal="area_entered" from="area_knight" to="." method="_on_area_knight_area_entered"]
+[connection signal="area_exited" from="area_knight" to="." method="_on_area_knight_area_exited"]

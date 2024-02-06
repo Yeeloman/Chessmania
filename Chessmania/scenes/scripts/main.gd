@@ -6,7 +6,7 @@ extends Control
 @onready var square = preload("res://scenes/square.tscn")
 
 var posx = 0
-var posy = 4
+var posy = 3
 var prevpos 
 
 var dark_square = Color("#36454F")
@@ -14,12 +14,17 @@ var light_square = Color("#D3D3D3")
 var move_color = Color("#3EA3AC90")
 var attack_color = Color("#AC473E90")
 var transparent = Color("#fa6ca000")
+var active_color_locker = Color("#0000FF90")
+var passive_color_locker = Color("#00FFAF90")
 var starting_pos = "rnbqkbnr/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKBNR"
 var grid_square_id := []
 var piece_array := []
 var colored_array := []
 var created_locker
-
+var piece_active
+var arr = [1,2,3]
+var prev_posx
+var prev_posy
 
 func _ready():
 	for i in range(80):
@@ -37,19 +42,49 @@ func _ready():
 func signal_coller():
 	Signals.connect('locker_entered', _on_show_move)
 	Signals.connect('locker_exited', _on_hide_move)
+	Signals.connect('locker_active', _on_locker_active)
+	Signals.connect('locker_passive', _on_locker_passive)
+
+func _on_locker_active():
+	print("locker is active")
+	Signals.disconnect('locker_active',_on_locker_active)
+	Signals.connect('locker_passive', _on_locker_passive)
+	for el in piece_array :
+		if typeof(el) != typeof(0) :
+			if el.global_position == created_locker.global_position : 
+				piece_active = el
+				prev_posx = posx
+				prev_posy = posy
+
+
+func _on_show_attacks():
+	pass
+
+func _on_locker_passive():
+	print("locker is passive")
+	Signals.disconnect('locker_passive',_on_locker_passive)
+	Signals.connect('locker_active', _on_locker_active)
+	
 
 func _on_show_move(arg):
-	if arg == "w_pawn" or arg == "b_pawn":
-		_pawn_move(arg)
+	PieceMovements._match_show_move(grid_square_id, arg, piece_array, posx, posy, created_locker, colored_array)
 
 func _on_hide_move():
-	for i in range(colored_array.size()):
-		colored_array[i].get_node("mov").color = transparent
-	colored_array.clear()
+	if created_locker.is_active == false:
+		for i in range(colored_array.size()):
+			colored_array[i].get_node("mov").color = transparent
+		colored_array.clear()
 
 func _process(_delta):
 	await get_tree().create_timer(0.1).timeout
 	_handle_locker_mov()
+	_handle_locker_state()
+	_on_pawn_move(_delta)
+	
+
+func _handle_locker_state():
+	
+	pass
 
 var down_pressed = false
 var up_pressed = false
@@ -61,8 +96,6 @@ func _handle_locker_mov():
 		down_pressed = true
 		if ((posx+1)*8)+posy < 80 and ((posx+1)*8)+posy>=0 :
 			created_locker.global_position = grid_square_id[((posx+1)*8)+posy].global_position
-			print("locker's pos: ", created_locker.global_position)
-			print("square's pos: ", grid_square_id[((posx+1)*8)+posy].global_position)
 			posx += 1
 	elif not Input.is_action_pressed("down"):
 		down_pressed = false
@@ -137,26 +170,70 @@ func _create_piece(piece, location) -> void:
 func _create_locker():
 	var new_locker = locker.instantiate()
 	chess_board.add_child(new_locker)
-	new_locker.global_position = piece_array[4].global_position
+	new_locker.global_position = piece_array[3].global_position
+	new_locker.get_node("locker_rect").color = passive_color_locker
 	return new_locker
 
-func _pawn_move(name):
-	if name == "w_pawn" :
-		var move = grid_square_id[((posx+1)*8)+posy]
-		var move_two = grid_square_id[((posx+2)*8)+posy]
-		move.get_node("mov").color = move_color
-		move_two.get_node("mov").color = move_color
-		await get_tree().create_timer(0.1).timeout
-		colored_array.push_back(move)
-		colored_array.push_back(move_two)
-	if name == "b_pawn":
-		var move = grid_square_id[((posx-1)*8)+posy]
-		var move_two = grid_square_id[((posx-2)*8)+posy]
-		move.get_node("mov").color = move_color
-		move_two.get_node("mov").color = move_color
-		await get_tree().create_timer(0.1).timeout
-		colored_array.push_back(move)
-		colored_array.push_back(move_two)
+
+
+func _on_pawn_move(delta):
+	if created_locker.is_active == true : 
+		if Input.is_action_just_pressed("move") :
+			for el in colored_array:
+				if el.global_position == created_locker.global_position:
+					piece_active.global_position = created_locker.global_position
+					piece_array[(prev_posx*8)+prev_posy] = 0
+					piece_array[(posx*8)+posy] = piece_active
+					_mini_hide_move()
 	pass
 
-#func _pawn_attack()
+func _mini_hide_move():
+	for i in range(colored_array.size()):
+		colored_array[i].get_node("mov").color = transparent
+	colored_array.clear()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#func _pawn_move(name):
+	#if created_locker.is_active == false :
+		#if name == "w_pawn" :
+			#var move = grid_square_id[((posx+1)*8)+posy]
+			#var move_two = grid_square_id[((posx+2)*8)+posy]
+			#move.get_node("mov").color = move_color
+			#move_two.get_node("mov").color = move_color
+			#await get_tree().create_timer(0.1).timeout
+			#colored_array.push_back(move)
+			#colored_array.push_back(move_two)
+		#if name == "b_pawn":
+			#var move = grid_square_id[((posx-1)*8)+posy]
+			#var move_two = grid_square_id[((posx-2)*8)+posy]
+			#move.get_node("mov").color = move_color
+			#move_two.get_node("mov").color = move_color
+			#await get_tree().create_timer(0.1).timeout
+			#colored_array.push_back(move)
+			#colored_array.push_back(move_two)
+	#pass
