@@ -55,5 +55,5 @@ func _on_locker_active():
 
 # handle the state where the locker is passive
 func _on_locker_passive():
-	Signals.disconnect('locker_passive',_on_locker_passive)
-	Signals.connect('locker_active', _on_locker_active)
+		Signals.disconnect('locker_passive',_on_locker_passive)
+		Signals.connect('locker_active', _on_locker_active)
