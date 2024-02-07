@@ -19,69 +19,56 @@ func _match_show_move(arg):
 			pass
 
 
-#func _show_pawn_move(arg):
-	#if GV.created_locker.is_active == false :
-		#if arg == "w_pawn" :
-			#if GV.posx != 1:
-				#if typeof(GV.piece_array[((GV.posx+1)*8)+GV.posy])==typeof(0):
-					#var move = GV.grid_square_id[((GV.posx+1)*8)+GV.posy]
-					#move.get_node("mov").color = GV.move_color
-					#await get_tree().create_timer(0.1).timeout
-					#GV.colored_array.push_back(move)
-			#else:
-				#if typeof(GV.piece_array[((GV.posx+1)*8)+GV.posy])==typeof(0) and typeof(GV.piece_array[((GV.posx+2)*8)+GV.posy])==typeof(0):
-					#var move = GV.grid_square_id[((GV.posx+1)*8)+GV.posy]
-					#var move_two = GV.grid_square_id[((GV.posx+2)*8)+GV.posy]
-					#move.get_node("mov").color = GV.move_color
-					#move_two.get_node("mov").color = GV.move_color
-					#await get_tree().create_timer(0.1).timeout
-					#GV.colored_array.push_back(move)
-					#GV.colored_array.push_back(move_two)
-				#elif typeof(GV.piece_array[((GV.posx+1)*8)+GV.posy])==typeof(0) and !(typeof(GV.piece_array[((GV.posx+2)*8)+GV.posy])==typeof(0)) :
-					#var move = GV.grid_square_id[((GV.posx+1)*8)+GV.posy]
-					#move.get_node("mov").color = GV.move_color
-					#await get_tree().create_timer(0.1).timeout
-					#GV.colored_array.push_back(move)
-				#else : 
-					#pass
-		#if arg == "b_pawn":
-			#if GV.posx != 8:
-				#if typeof(GV.piece_array[((GV.posx-1)*8)+GV.posy])==typeof(0):
-					#var move = GV.grid_square_id[((GV.posx-1)*8)+GV.posy]
-					#move.get_node("mov").color = GV.move_color
-					#await get_tree().create_timer(0.1).timeout
-					#GV.colored_array.push_back(move)
-			#else:
-				#if typeof(GV.piece_array[((GV.posx-1)*8)+GV.posy])==typeof(0) and typeof(GV.piece_array[((GV.posx-2)*8)+GV.posy])==typeof(0):
-					#var move = GV.grid_square_id[((GV.posx-1)*8)+GV.posy]
-					#var move_two = GV.grid_square_id[((GV.posx-2)*8)+GV.posy]
-					#move.get_node("mov").color = GV.move_color
-					#move_two.get_node("mov").color = GV.move_color
-					#await get_tree().create_timer(0.1).timeout
-					#GV.colored_array.push_back(move)
-					#GV.colored_array.push_back(move_two)
-				#elif typeof(GV.piece_array[((GV.posx-1)*8)+GV.posy])==typeof(0) and !(typeof(GV.piece_array[((GV.posx-2)*8)+GV.posy])==typeof(0)) :
-					#var move = GV.grid_square_id[((GV.posx-1)*8)+GV.posy]
-					#move.get_node("mov").color = GV.move_color
-					#await get_tree().create_timer(0.1).timeout
-					#GV.colored_array.push_back(move)
-				#else :
-					#pass
-
-var pawn_arr := [9, 17, 24]
 func _show_pawn_move(arg):
 	if GV.created_locker.is_active == false :
 		if arg == "w_pawn" :
-			for el in pawn_arr :
-				if typeof(GV.piece_array[el]) == typeof(0):
-					var move = GV.grid_square_id[el]
+			if GV.posx != 1:
+				if typeof(GV.piece_array[((GV.posx+1)*8)+GV.posy])==typeof(0):
+					var move = GV.grid_square_id[((GV.posx+1)*8)+GV.posy]
 					move.get_node("mov").color = GV.move_color
 					await get_tree().create_timer(0.1).timeout
 					GV.colored_array.push_back(move)
-		else : 
-			pass
-			
-		
+			else:
+				if typeof(GV.piece_array[((GV.posx+1)*8)+GV.posy])==typeof(0) and typeof(GV.piece_array[((GV.posx+2)*8)+GV.posy])==typeof(0):
+					var move = GV.grid_square_id[((GV.posx+1)*8)+GV.posy]
+					var move_two = GV.grid_square_id[((GV.posx+2)*8)+GV.posy]
+					move.get_node("mov").color = GV.move_color
+					move_two.get_node("mov").color = GV.move_color
+					await get_tree().create_timer(0.1).timeout
+					GV.colored_array.push_back(move)
+					GV.colored_array.push_back(move_two)
+				elif typeof(GV.piece_array[((GV.posx+1)*8)+GV.posy])==typeof(0) and !(typeof(GV.piece_array[((GV.posx+2)*8)+GV.posy])==typeof(0)) :
+					var move = GV.grid_square_id[((GV.posx+1)*8)+GV.posy]
+					move.get_node("mov").color = GV.move_color
+					await get_tree().create_timer(0.1).timeout
+					GV.colored_array.push_back(move)
+				else : 
+					pass
+		if arg == "b_pawn":
+			if GV.posx != 8:
+				if typeof(GV.piece_array[((GV.posx-1)*8)+GV.posy])==typeof(0):
+					var move = GV.grid_square_id[((GV.posx-1)*8)+GV.posy]
+					move.get_node("mov").color = GV.move_color
+					await get_tree().create_timer(0.1).timeout
+					GV.colored_array.push_back(move)
+			else:
+				if typeof(GV.piece_array[((GV.posx-1)*8)+GV.posy])==typeof(0) and typeof(GV.piece_array[((GV.posx-2)*8)+GV.posy])==typeof(0):
+					var move = GV.grid_square_id[((GV.posx-1)*8)+GV.posy]
+					var move_two = GV.grid_square_id[((GV.posx-2)*8)+GV.posy]
+					move.get_node("mov").color = GV.move_color
+					move_two.get_node("mov").color = GV.move_color
+					await get_tree().create_timer(0.1).timeout
+					GV.colored_array.push_back(move)
+					GV.colored_array.push_back(move_two)
+				elif typeof(GV.piece_array[((GV.posx-1)*8)+GV.posy])==typeof(0) and !(typeof(GV.piece_array[((GV.posx-2)*8)+GV.posy])==typeof(0)) :
+					var move = GV.grid_square_id[((GV.posx-1)*8)+GV.posy]
+					move.get_node("mov").color = GV.move_color
+					await get_tree().create_timer(0.1).timeout
+					GV.colored_array.push_back(move)
+				else :
+					pass
+
+
 func _show_king_move(arg):
 	if GV.created_locker.is_active == false :
 		if arg == "w_king":
