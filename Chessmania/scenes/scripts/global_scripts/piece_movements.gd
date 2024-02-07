@@ -19,6 +19,40 @@ func _match_show_move(arg):
 			pass
 
 
+#func _show_pawn_move(arg):
+	#var forward_direction = 0
+	#var backward_direction = 0
+	#var piece_to_check = ""
+	#if arg == "w_pawn":
+		#piece_to_check = "w_pawn"
+		#forward_direction = 1
+		#backward_direction = -1
+	#else: 
+		#piece_to_check = "b_pawn"
+		#forward_direction = -1
+		#backward_direction = 1
+#
+	#if GV.created_locker.is_active == false:
+		#if GV.posx != 1 and GV.posx != 8:
+			#_check_pawn_move(forward_direction)
+			#_check_pawn_move(forward_direction * 2, true)
+		#else:
+			#_check_pawn_move(forward_direction)
+		#
+#func _check_pawn_move(direction, is_double_move = false):
+	#var target_posx = GV.posx + direction
+	#if typeof(GV.piece_array[(target_posx * 8) + GV.posy]) == typeof(0):
+		#var move = GV.grid_square_id[(target_posx * 8) + GV.posy]
+		#move.get_node("mov").color = GV.move_color
+		#await get_tree().create_timer(0.1).timeout
+		#GV.colored_array.push_back(move)
+		#if is_double_move:
+			#var second_target_posx = GV.posx + direction * 2
+			#var move_two = GV.grid_square_id[(second_target_posx * 8) + GV.posy]
+			#move_two.get_node("mov").color = GV.move_color
+			#await get_tree().create_timer(0.1).timeout
+			#GV.colored_array.push_back(move_two)
+
 func _show_pawn_move(arg):
 	if GV.created_locker.is_active == false :
 		if arg == "w_pawn" :
