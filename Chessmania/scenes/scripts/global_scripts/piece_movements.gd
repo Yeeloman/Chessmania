@@ -2,19 +2,21 @@ extends Node
 
 
 func _match_show_move(arg):
-	match arg : 
+	if not arg:
+		arg = GV.old_piece
+	match GV.old_piece: 
 		"w_pawn", "b_pawn":
-			_show_pawn_move(arg)
+			_show_pawn_move(GV.old_piece)
 		"w_king", "b_king":
-			_show_king_move(arg)
+			_show_king_move(GV.old_piece)
 		"w_queen", "b_queen":
-			_show_queen_move(arg)
+			_show_queen_move(GV.old_piece)
 		"w_rook", "b_rook":
-			_show_rook_move(arg)
+			_show_rook_move(GV.old_piece)
 		"w_knight", "b_knight":
-			_show_knight_move(arg)
+			_show_knight_move(GV.old_piece)
 		"w_bishop", "b_bishop":
-			_show_bishop_move(arg)
+			_show_bishop_move(GV.old_piece)
 		_ :
 			pass
 
