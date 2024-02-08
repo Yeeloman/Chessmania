@@ -3,6 +3,8 @@ extends Node
 
 
 func _match_show_move(arg):
+	if GV.created_locker.is_active == false:
+		_mini_hide_move()
 	match arg: 
 		"w_pawn", "b_pawn":
 			_show_pawn_move(arg)
