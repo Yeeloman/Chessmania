@@ -6,6 +6,21 @@ var up_pressed = false
 var right_pressed = false
 var left_pressed = false
 
+#func _process(_delta):
+	#if Input.is_action_just_released("down"):
+		#PieceMovements._on_hide_move()
+		#pass
+	#if Input.is_action_just_released("up"):
+		#PieceMovements._on_hide_move()
+		#pass
+	#if Input.is_action_just_released("right"):
+		#PieceMovements._on_hide_move()
+		#pass
+	#if Input.is_action_just_released("left"):
+		#PieceMovements._on_hide_move()
+		#pass
+
+
 # handles the locker instance movement
 func _handle_locker_mov():
 	if Input.is_action_just_pressed("down") and not down_pressed:
@@ -39,7 +54,6 @@ func _handle_locker_mov():
 			GV.posy -= 1
 	elif Input.is_action_pressed("left"):
 		left_pressed = false
-
 
 # handles the state where the locker is active
 func _on_locker_active():
