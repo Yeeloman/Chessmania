@@ -8,6 +8,8 @@ var rook_moves := [[0,1],[0,-1],[1,0],[-1,0]]
 var bishop_moves := [[1,1],[-1,1],[-1,-1],[1,-1]]
 var knight_moves := [[2,1],[2,-1],[1,2],[-1,2],
 					[1,-2],[-1,-2],[-2,-1],[-2,1]]
+var board_edges:= [[0,7],[8,15],[16,23],[24,31],[32,39],
+					[40,47],[48,55],[56,63],[64,71],[72,79]]
 
 func _match_show_move(arg):
 	if GV.created_locker.is_active == false:
@@ -143,16 +145,32 @@ func _show_rook_move(_arg):
 	if GV.created_locker.is_active == false :
 		var allowed_moves := []
 		var colored := []
-		for i in rook_moves :
-			var move = ((GV.posx+i[0])*8)+(GV.posy+i[1])
-			if move<80 and move>=0:
-				if typeof(GV.piece_array[move])==typeof(0) :
-					allowed_moves.append(move)
-					var j = i.map(func(value):return value*2)
-					var sec_move = ((GV.posx+j[0])*8)+(GV.posy+j[1])
-					if sec_move<80 and sec_move>=0:
-						if typeof(GV.piece_array[sec_move])==typeof(0) :
-							allowed_moves.append(sec_move)
+		for i in rook_moves:
+			var move
+			if i[0]==0:
+				var check = ((GV.posx+i[0])*8)+(GV.posy+i[1])
+				if check>=board_edges[GV.posx][0] and check<=board_edges[GV.posx][1]:
+					move = int(check)
+			else :
+				print("second i", i)
+				move = int(((GV.posx+i[0])*8)+(GV.posy+i[1]))
+			print(move)
+			if typeof(move) == TYPE_INT:
+				if move<80 and move>=0 :
+					if typeof(GV.piece_array[move])==typeof(0) :
+						allowed_moves.append(move)
+						var j = i.map(func(value):return value*2)
+						var sec_move
+						if j[0]==0:
+							var sec_check = ((GV.posx+j[0])*8)+(GV.posy+j[1])
+							if sec_check>=board_edges[GV.posx][0] and sec_check<=board_edges[GV.posx][1]:
+								sec_move = int(((GV.posx+j[0])*8)+(GV.posy+j[1]))
+						else :
+							sec_move = int(((GV.posx+j[0])*8)+(GV.posy+j[1]))
+						if typeof(sec_move) == TYPE_INT:
+							if sec_move<80 and sec_move>=0:
+								if typeof(GV.piece_array[sec_move])==typeof(0) :
+									allowed_moves.append(sec_move)
 		for el in allowed_moves :
 			var move = GV.grid_square_id[el]
 			move.get_node("mov").color = GV.move_color
