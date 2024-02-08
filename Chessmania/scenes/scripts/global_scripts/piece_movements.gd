@@ -277,6 +277,3 @@ func _on_hide_move():
 		for i in range(GV.colored_array.size()):
 			GV.colored_array[i].get_node("mov").color = GV.transparent
 		GV.colored_array.clear()
-
-
-

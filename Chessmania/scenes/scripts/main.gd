@@ -30,7 +30,6 @@ func signal_caller():
 	Signals.connect('locker_active', HLocker._on_locker_active)
 	Signals.connect('locker_passive', HLocker._on_locker_passive)
 
-
 # function that colors the squares
 func squares_coloring() -> void:
 	var color_bit = 0
