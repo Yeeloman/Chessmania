@@ -57,3 +57,4 @@ func _on_locker_active():
 func _on_locker_passive():
 		Signals.disconnect('locker_passive',_on_locker_passive)
 		Signals.connect('locker_active', _on_locker_active)
+		#Signals.emit_signal('same_piece', GV.piece_array[(GV.posx*8+GV.posy)].p_name)

@@ -1,22 +1,21 @@
 extends Node
 
 
+
 func _match_show_move(arg):
-	if not arg:
-		arg = GV.old_piece
-	match GV.old_piece: 
+	match arg: 
 		"w_pawn", "b_pawn":
-			_show_pawn_move(GV.old_piece)
+			_show_pawn_move(arg)
 		"w_king", "b_king":
-			_show_king_move(GV.old_piece)
+			_show_king_move(arg)
 		"w_queen", "b_queen":
-			_show_queen_move(GV.old_piece)
+			_show_queen_move(arg)
 		"w_rook", "b_rook":
-			_show_rook_move(GV.old_piece)
+			_show_rook_move(arg)
 		"w_knight", "b_knight":
-			_show_knight_move(GV.old_piece)
+			_show_knight_move(arg)
 		"w_bishop", "b_bishop":
-			_show_bishop_move(GV.old_piece)
+			_show_bishop_move(arg)
 		_ :
 			pass
 
@@ -106,6 +105,7 @@ func _show_pawn_move(arg):
 
 
 func _show_king_move(arg):
+	print('king')
 	if GV.created_locker.is_active == false :
 		if arg == "w_king":
 			pass
@@ -169,7 +169,7 @@ func _on_piece_move():
 					GV.piece_active.global_position = GV.created_locker.global_position
 					GV.piece_array[(GV.prev_posx*8)+GV.prev_posy] = 0
 					GV.piece_array[(GV.posx*8)+GV.posy] = GV.piece_active
-					_mini_hide_move()
+					_mini_hide_move() # to hide move after the piece is moved
 	pass
 
 

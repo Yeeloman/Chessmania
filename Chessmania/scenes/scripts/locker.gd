@@ -18,5 +18,10 @@ func _process(_delta):
 			self.get_node("locker_rect").color = Color("#00FFAF90")
 			Signals.emit_signal("locker_passive")
 			is_active = false
-			PieceMovements._mini_hide_move()
+			if GV.created_locker.global_position != GV.piece_active.global_position :
+				PieceMovements._mini_hide_move()
+				if typeof(GV.piece_array[GV.posx*8+GV.posy])!=typeof(0):
+					PieceMovements._match_show_move(GV.piece_array[(GV.posx*8+GV.posy)].p_name)
+				else:
+					PieceMovements._mini_hide_move()
 	pass

@@ -21,9 +21,7 @@ func _process(_delta):
 
 
 func _on_pawn_area_area_entered(area):
-	GV.old_piece = p_name
 	Signals.emit_signal('locker_entered', p_name)
-	
 	pass 
 
 

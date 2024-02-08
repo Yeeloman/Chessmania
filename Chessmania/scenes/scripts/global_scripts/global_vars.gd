@@ -18,5 +18,4 @@ var prev_posx
 var prev_posy
 var posx = 0
 var posy = 3
-var prevpos 
-var old_piece
+var prevpos
