@@ -25,8 +25,8 @@ func _process(_delta):
 
 # calls the signals from the ready function
 func signal_caller():
-	Signals.connect('locker_entered', PieceMovements._match_show_move)
 	Signals.connect('locker_exited', PieceMovements._on_hide_move)
+	Signals.connect('locker_entered', PieceMovements._match_show_move)
 	Signals.connect('locker_active', HLocker._on_locker_active)
 	Signals.connect('locker_passive', HLocker._on_locker_passive)
 
