@@ -80,8 +80,7 @@ func _show_pawn_move(arg):
 
 
 
-func _show_king_move(arg):
-	print('king')
+func _show_king_move(_arg):
 	if GV.created_locker.is_active == false :
 		var allowed_moves := []
 		var colored := []
@@ -99,7 +98,7 @@ func _show_king_move(arg):
 			GV.colored_array.push_back(el)
 
 
-func _show_queen_move(arg):
+func _show_queen_move(_arg):
 	if GV.created_locker.is_active == false :
 		var allowed_moves := []
 		var colored := []
@@ -122,7 +121,7 @@ func _show_queen_move(arg):
 			GV.colored_array.push_back(el)
 	pass
 
-func _show_knight_move(arg):
+func _show_knight_move(_arg):
 	if GV.created_locker.is_active == false :
 		var allowed_moves := []
 		var colored := []
@@ -140,7 +139,7 @@ func _show_knight_move(arg):
 			GV.colored_array.push_back(el)
 
 
-func _show_rook_move(arg):
+func _show_rook_move(_arg):
 	if GV.created_locker.is_active == false :
 		var allowed_moves := []
 		var colored := []
@@ -163,7 +162,7 @@ func _show_rook_move(arg):
 			GV.colored_array.push_back(el)
 	pass
 
-func _show_bishop_move(arg):
+func _show_bishop_move(_arg):
 	if GV.created_locker.is_active == false :
 		var allowed_moves := []
 		var colored := []

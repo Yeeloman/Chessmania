@@ -19,9 +19,9 @@ func _process(_delta):
 	pass
 
 
-func _on_area_king_area_entered(area):
+func _on_area_king_area_entered(_area):
 	Signals.emit_signal('locker_entered', p_name)
 
 
-func _on_area_king_area_exited(area):
+func _on_area_king_area_exited(_area):
 	Signals.emit_signal('locker_exited')

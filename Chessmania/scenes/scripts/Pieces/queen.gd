@@ -19,11 +19,11 @@ func _process(_delta):
 	pass
 
 
-func _on_area_queen_area_entered(area):
+func _on_area_queen_area_entered(_area):
 	Signals.emit_signal('locker_entered', p_name)
 	pass 
 
 
-func _on_area_queen_area_exited(area):
+func _on_area_queen_area_exited(_area):
 	Signals.emit_signal('locker_exited')
 	pass # Replace with function body.
