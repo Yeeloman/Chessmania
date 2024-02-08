@@ -8,7 +8,7 @@ var transparent = Color("#fa6ca000")
 var active_color_locker = Color("#0000FF90")
 var passive_color_locker = Color("#00FFAF90")
 
-var starting_pos = "rnbqkbnr/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKBNR"
+var starting_pos = "rnbqklij/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKLIJ"
 var grid_square_id := []
 var piece_array := []
 var colored_array := []

@@ -7,6 +7,7 @@ var w_pawn_icon = preload("res://assets/WhitePieces/whitePawn.png")
 var p_id := -1
 var p_type: int
 var p_name : String
+var p_pos: String
 
 
 func _ready():

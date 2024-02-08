@@ -6,6 +6,7 @@ var w_king_icon = preload("res://assets/WhitePieces/whiteKing.png")
 var p_id := -1
 var p_type: int
 var p_name : String
+var p_pos: String
 
 
 func _ready():
