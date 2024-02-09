@@ -12,8 +12,9 @@ func _process(_delta):
 		$".".visible = false
 	elif GV.created_locker.is_active == true and typeof(GV.piece_array[GV.posx*8+GV.posy]) != typeof(0):
 		#display the hp of the hovered piece
-		$TabContainer/HP/target_HP_bar.visible = true
-		$TabContainer/HP/target_HP_bar.max_value = GV.hovered_piece.HP
+		if GV.piece_active != GV.hovered_piece:
+			$TabContainer/HP/target_HP_bar.visible = true
+			$TabContainer/HP/target_HP_bar.max_value = GV.hovered_piece.HP
 	else:
 		$".".visible = true
 		#display the hp of the focused piece
