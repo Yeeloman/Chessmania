@@ -7,6 +7,7 @@ var p_id := -1
 var p_type: int
 var p_name : String
 var p_pos: String
+var display_name: String
 
 # piece stats
 var HP
@@ -29,7 +30,6 @@ func _process(_delta):
 
 func _on_area_bishop_area_entered(_area):
 	Signals.emit_signal('locker_entered', p_name)
-
 
 
 func _on_area_bishop_area_exited(_area):

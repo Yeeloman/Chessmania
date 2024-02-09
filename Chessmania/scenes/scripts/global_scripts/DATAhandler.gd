@@ -4,6 +4,7 @@ var pieces_dic = {
 	######################### white pieces #########################
 	"r": {# rok to the queen
 		"p_scene" : preload("res://scenes/Pieces/rook.tscn"),
+		"display_name": "Rook",
 		"p_type": 1,
 		"p_name": "w_rook",
 		"p_pos": "l_rook",
@@ -15,6 +16,7 @@ var pieces_dic = {
 	},
 	"j": {# rok to the king
 		"p_scene" : preload("res://scenes/Pieces/rook.tscn"),
+		"display_name": "Rook",
 		"p_type": 1,
 		"p_name": "w_rook",
 		"p_pos": "r_rook",
@@ -26,6 +28,7 @@ var pieces_dic = {
 	},
 	"n": {#knight to the queen
 		"p_scene": preload("res://scenes/Pieces/knight.tscn"),
+		"display_name": "Knight",
 		"p_type": 1,
 		"p_pos": "l_knight",
 		"p_name": "w_knight",
@@ -37,6 +40,7 @@ var pieces_dic = {
 	},
 	"i": {#knight to the king
 		"p_scene": preload("res://scenes/Pieces/knight.tscn"),
+		"display_name": "Knight",
 		"p_type": 1,
 		"p_pos": "r_knight",
 		"p_name": "w_knight",
@@ -48,6 +52,7 @@ var pieces_dic = {
 	},
 	"b": {#bishop to the queen
 		"p_scene": preload("res://scenes/Pieces/bishop.tscn"),
+		"display_name": "Bishop",
 		"p_type": 1,
 		"p_pos": "l_bishop",
 		"p_name": "w_bishop",
@@ -59,6 +64,7 @@ var pieces_dic = {
 	},
 	"l": {#bishop to the king
 		"p_scene": preload("res://scenes/Pieces/bishop.tscn"),
+		"display_name": "Bishop",
 		"p_type": 1,
 		"p_pos": "r_bishop",
 		"p_name": "w_bishop",
@@ -70,6 +76,7 @@ var pieces_dic = {
 	},
 	"q": {
 		"p_scene": preload("res://scenes/Pieces/queen.tscn"),
+		"display_name": "Queen",
 		"p_type": 1,
 		"p_pos": "n",
 		"p_name" : "w_queen",
@@ -81,6 +88,7 @@ var pieces_dic = {
 	},
 	"k": {
 		"p_scene": preload("res://scenes/Pieces/king.tscn"),
+		"display_name": "King",
 		"p_type": 1,
 		"p_pos": "n",
 		"p_name" : "w_king",
@@ -92,6 +100,7 @@ var pieces_dic = {
 	},
 	"p": {
 		"p_scene": preload("res://scenes/Pieces/pawn.tscn"),
+		"display_name": "Pawn",
 		"p_type": 1,
 		"p_pos": "n",
 		"p_name" : "w_pawn",
@@ -106,6 +115,7 @@ var pieces_dic = {
 	######################### black pieces #########################
 	"R": {#rook to the queen
 		"p_scene" : preload("res://scenes/Pieces/rook.tscn"),
+		"display_name": "Rook",
 		"p_type": 0,
 		"p_pos": "L_rook",
 		"p_name": "b_rook",
@@ -117,6 +127,7 @@ var pieces_dic = {
 	},
 	"J": {#rook to the king
 		"p_scene" : preload("res://scenes/Pieces/rook.tscn"),
+		"display_name": "Rook",
 		"p_type": 0,
 		"p_pos": "R_rook",
 		"p_name": "b_rook",
@@ -128,6 +139,7 @@ var pieces_dic = {
 	},
 	"N": {#knight to the queen
 		"p_scene": preload("res://scenes/Pieces/knight.tscn"),
+		"display_name": "Knigh",
 		"p_type": 0,
 		"p_pos": "L_knight",
 		"p_name": "b_knight",
@@ -139,6 +151,7 @@ var pieces_dic = {
 	},
 	"I": {#kinght to the king
 		"p_scene": preload("res://scenes/Pieces/knight.tscn"),
+		"display_name": "Knight",
 		"p_type": 0,
 		"p_pos": "R_knight",
 		"p_name": "b_knight",
@@ -150,6 +163,7 @@ var pieces_dic = {
 	},
 	"B": {#bishop to the queen
 		"p_scene": preload("res://scenes/Pieces/bishop.tscn"),
+		"display_name": "Bishop",
 		"p_type": 0,
 		"p_pos": "L_bishop",
 		"p_name": "b_bishop",
@@ -161,6 +175,7 @@ var pieces_dic = {
 	},
 	"L": {#bishop to the king
 		"p_scene": preload("res://scenes/Pieces/bishop.tscn"),
+		"display_name": "Bishop",
 		"p_type": 0,
 		"p_pos": "R_bishop",
 		"p_name": "b_bishop",
@@ -172,6 +187,7 @@ var pieces_dic = {
 	},
 	"Q": {
 		"p_scene": preload("res://scenes/Pieces/queen.tscn"),
+		"display_name": "Queen",
 		"p_type": 0,
 		"p_pos": "N",
 		"p_name": "b_queen",
@@ -183,6 +199,7 @@ var pieces_dic = {
 	},
 	"K": {
 		"p_scene": preload("res://scenes/Pieces/king.tscn"),
+		"display_name": "King",
 		"p_type": 0,
 		"p_pos": "N",
 		"p_name": "b_king",
@@ -194,6 +211,7 @@ var pieces_dic = {
 	},
 	"P": {
 		"p_scene": preload("res://scenes/Pieces/pawn.tscn"),
+		"display_name": "Pawn",
 		"p_type": 0,
 		"p_pos": "N",
 		"p_name": "b_pawn",

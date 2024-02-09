@@ -2,7 +2,7 @@ extends Control
 
 @onready var grid = $chess_container/chess_board/chess_grid
 @onready var chess_board = $chess_container/chess_board
-@onready var p_info_displayer = $piece_info_displayer
+@onready var p_info_container = $piece_info_displayer
 
 
 func _ready():
@@ -15,7 +15,7 @@ func _ready():
 	_position_starter(GV.starting_pos)
 	GV.created_locker = CreateFunc._create_locker(chess_board)
 	GV.prevpos = GV.created_locker.global_position
-	CreateFunc._create_info_displayer(p_info_displayer)
+	CreateFunc._create_info_displayer(p_info_container)
 	signal_caller()
 
 
@@ -29,6 +29,7 @@ func _process(_delta):
 func signal_caller():
 	Signals.connect('locker_exited', PieceMovements._on_hide_move)
 	Signals.connect('locker_entered', PieceMovements._match_show_move)
+
 	Signals.connect('locker_active', HLocker._on_locker_active)
 	Signals.connect('locker_passive', HLocker._on_locker_passive)
 

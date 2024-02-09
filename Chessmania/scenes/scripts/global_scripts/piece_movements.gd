@@ -15,6 +15,7 @@ var board_edges:= [[0,7],[8,15],[16,23],[24,31],[32,39],
 					[40,47],[48,55],[56,63],[64,71],[72,79]]
 
 func _match_show_move(arg):
+	GV.hovered_piece = GV.piece_array[GV.posx*8+GV.posy]
 	if GV.created_locker.is_active == false:
 		_mini_hide_move()
 	match arg: 

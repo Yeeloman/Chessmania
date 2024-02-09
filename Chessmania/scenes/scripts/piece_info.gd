@@ -8,4 +8,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	$TabContainer/HP/selected_p.text = GV.hovered_piece.display_name
+	$TabContainer/HP/HP_bar.max_value = GV.hovered_piece.HP
 	pass

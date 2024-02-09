@@ -10,12 +10,20 @@ var active_color_locker = Color("#0000FF90")
 var passive_color_locker = Color("#00FFAF90")
 
 var starting_pos = "rnbqklij/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKLIJ"
+
+
 var grid_square_id := []
 var piece_array := []
 var colored_array := []
+
 var created_locker
 var created_displayer
+var display_container
+
 var piece_active
+var hovered_piece
+
+
 var prev_posx
 var prev_posy
 var posx = 0

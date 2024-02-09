@@ -18,6 +18,7 @@ func _create_locker(chess_board):
 func _create_piece(chess_board, piece, location) -> void:
 	var new_piece_packed = piece.p_scene
 	var new_piece = new_piece_packed.instantiate()
+	new_piece.display_name = piece.display_name
 	new_piece.p_type = piece.p_type
 	new_piece.p_name = piece.p_name
 	new_piece.p_pos = piece.p_pos
@@ -47,7 +48,7 @@ func _create_square(grid):
 
 
 # function that creates the displayer of piece informations
-func _create_info_displayer(display_container):
+func _create_info_displayer(p_info_container):
 	GV.created_displayer = piece_info.instantiate()
-	display_container.add_child(GV.created_displayer)
+	p_info_container.add_child(GV.created_displayer)
 	pass
