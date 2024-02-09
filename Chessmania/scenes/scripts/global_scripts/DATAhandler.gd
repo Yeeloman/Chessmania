@@ -203,7 +203,7 @@ var pieces_dic = {
 		"p_type": 0,
 		"p_pos": "N",
 		"p_name": "b_king",
-		"HP": 30,
+		"HP": 10,
 		"Atk": 13,
 		"Def": 17,
 		"Spd": 7,

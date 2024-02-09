@@ -18,6 +18,8 @@ var colored_array := []
 
 var created_locker
 var created_displayer
+var created_player
+
 var display_container
 
 var piece_active

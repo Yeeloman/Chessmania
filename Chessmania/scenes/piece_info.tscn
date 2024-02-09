@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://de1qbaxql4wtj"]
+[gd_scene load_steps=8 format=3 uid="uid://de1qbaxql4wtj"]
 
 [ext_resource type="Script" path="res://scenes/scripts/piece_info.gd" id="1_xvaxk"]
-[ext_resource type="Texture2D" uid="uid://dbwmcilq4qgjj" path="res://assets/LIFE_BAR/life_bar_under.png" id="2_5obp2"]
-[ext_resource type="Texture2D" uid="uid://c2ph4blnuvh4n" path="res://assets/LIFE_BAR/life_bar_over.png" id="3_jmfsg"]
-[ext_resource type="Texture2D" uid="uid://6jxlic80b6cj" path="res://assets/LIFE_BAR/life_bar.png" id="4_luc5k"]
+[ext_resource type="Texture2D" uid="uid://bh42qnw567154" path="res://assets/LIFE_BAR/focused_under.png" id="2_jufsv"]
+[ext_resource type="Texture2D" uid="uid://dyuijnpoqhuvk" path="res://assets/LIFE_BAR/focused_over.png" id="3_y6gev"]
+[ext_resource type="Texture2D" uid="uid://c4aqgy16ovyuq" path="res://assets/LIFE_BAR/focused_health.png" id="4_pptgn"]
+[ext_resource type="Texture2D" uid="uid://deu4ek0ytvcis" path="res://assets/LIFE_BAR/target_under.png" id="5_ybjld"]
+[ext_resource type="Texture2D" uid="uid://bn20xgelo8xij" path="res://assets/LIFE_BAR/target_over.png" id="6_dtq1o"]
+[ext_resource type="Texture2D" uid="uid://e26ekhvg5npr" path="res://assets/LIFE_BAR/target_health.png" id="7_x4ifc"]
 
 [node name="piece_info" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,27 +33,39 @@ layout_mode = 2
 
 [node name="selected_p" type="RichTextLabel" parent="TabContainer/HP"]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 19.0
-offset_right = 225.0
-offset_bottom = 54.0
+offset_left = 26.0
+offset_top = 10.0
+offset_right = 226.0
+offset_bottom = 45.0
 
 [node name="HP_bar" type="TextureProgressBar" parent="TabContainer/HP"]
 layout_mode = 0
 offset_left = 26.0
-offset_top = 59.0
+offset_top = 51.0
 offset_right = 226.0
-offset_bottom = 84.0
+offset_bottom = 76.0
 value = 100.0
-texture_under = ExtResource("2_5obp2")
-texture_over = ExtResource("3_jmfsg")
-texture_progress = ExtResource("4_luc5k")
+rounded = true
+texture_under = ExtResource("2_jufsv")
+texture_over = ExtResource("3_y6gev")
+texture_progress = ExtResource("4_pptgn")
+
+[node name="target_HP_bar" type="TextureProgressBar" parent="TabContainer/HP"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 88.0
+offset_right = 226.0
+offset_bottom = 98.0
+value = 100.0
+texture_under = ExtResource("5_ybjld")
+texture_over = ExtResource("6_dtq1o")
+texture_progress = ExtResource("7_x4ifc")
 
 [node name="Stats" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="stats_display" type="GridContainer" parent="TabContainer/Stats"]
+[node name="stats_display" type="PanelContainer" parent="TabContainer/Stats"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
