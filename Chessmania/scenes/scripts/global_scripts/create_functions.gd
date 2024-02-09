@@ -20,15 +20,21 @@ func _create_piece(chess_board, piece, location) -> void:
 	new_piece.p_type = piece.p_type
 	new_piece.p_name = piece.p_name
 	new_piece.p_pos = piece.p_pos
-	for el in piece.stats:
-		print(piece.stats[el])
-		pass
-	#new_piece.stats = piece.stats.duplicate()
-	#print("piece name", new_piece.p_name)
 	chess_board.add_child(new_piece)
 	new_piece.global_position = GV.grid_square_id[location].global_position
 	GV.piece_array[location] = new_piece
 	new_piece.p_id = location
+	_set_stats(piece, new_piece)
+
+
+# function that sets the stats for the pieces
+func _set_stats(p_prototype, p_target) -> void:
+	p_target.HP = p_prototype.HP
+	p_target.Atk = p_prototype.Atk
+	p_target.Def = p_prototype.Def
+	p_target.Spd = p_prototype.Spd
+	p_target.Lck = p_prototype.Lck
+	pass
 
 
 # function that creates instances of the square scene

@@ -8,7 +8,13 @@ var p_id := -1
 var p_type: int
 var p_name : String
 var p_pos: String
-var stats: Dictionary
+
+# piece stats
+var HP
+var Atk
+var Def
+var Spd
+var Lck
 
 
 func _ready():
