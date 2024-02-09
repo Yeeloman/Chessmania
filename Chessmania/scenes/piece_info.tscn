@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://de1qbaxql4wtj"]
+
+[ext_resource type="Script" path="res://scenes/scripts/piece_info.gd" id="1_xvaxk"]
+[ext_resource type="Texture2D" uid="uid://dbwmcilq4qgjj" path="res://assets/LIFE_BAR/life_bar_under.png" id="2_5obp2"]
+[ext_resource type="Texture2D" uid="uid://c2ph4blnuvh4n" path="res://assets/LIFE_BAR/life_bar_over.png" id="3_jmfsg"]
+[ext_resource type="Texture2D" uid="uid://6jxlic80b6cj" path="res://assets/LIFE_BAR/life_bar.png" id="4_luc5k"]
+
+[node name="piece_info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -830.0
+offset_bottom = -570.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xvaxk")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HP" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="selected_p_name" type="RichTextLabel" parent="TabContainer/HP"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 19.0
+offset_right = 225.0
+offset_bottom = 54.0
+
+[node name="HP_bar" type="TextureProgressBar" parent="TabContainer/HP"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 59.0
+offset_right = 226.0
+offset_bottom = 84.0
+value = 100.0
+texture_under = ExtResource("2_5obp2")
+texture_over = ExtResource("3_jmfsg")
+texture_progress = ExtResource("4_luc5k")
+
+[node name="Stats" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="stats_display" type="GridContainer" parent="TabContainer/Stats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

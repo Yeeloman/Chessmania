@@ -2,6 +2,7 @@ extends Node
 
 @onready var locker = preload("res://scenes/locker.tscn")
 @onready var square = preload("res://scenes/square.tscn")
+@onready var piece_info = preload("res://scenes/piece_info.tscn")
 
 
 # creates the locker instance
@@ -43,3 +44,10 @@ func _create_square(grid):
 	created_square.square_id = GV.grid_square_id.size()
 	grid.add_child(created_square)
 	GV.grid_square_id.push_back(created_square)
+
+
+# function that creates the displayer of piece informations
+func _create_info_displayer(display_container):
+	GV.created_displayer = piece_info.instantiate()
+	display_container.add_child(GV.created_displayer)
+	pass

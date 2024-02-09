@@ -1,5 +1,6 @@
 extends Node
 
+
 var dark_square = Color("#36454F")
 var light_square = Color("#D3D3D3")
 var move_color = Color("#3EA3AC90")
@@ -13,6 +14,7 @@ var grid_square_id := []
 var piece_array := []
 var colored_array := []
 var created_locker
+var created_displayer
 var piece_active
 var prev_posx
 var prev_posy

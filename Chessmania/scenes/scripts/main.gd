@@ -1,7 +1,8 @@
 extends Control
 
-@onready var grid = $chess_board/chess_grid
-@onready var chess_board = $chess_board
+@onready var grid = $chess_container/chess_board/chess_grid
+@onready var chess_board = $chess_container/chess_board
+@onready var p_info_displayer = $piece_info_displayer
 
 
 func _ready():
@@ -14,6 +15,7 @@ func _ready():
 	_position_starter(GV.starting_pos)
 	GV.created_locker = CreateFunc._create_locker(chess_board)
 	GV.prevpos = GV.created_locker.global_position
+	CreateFunc._create_info_displayer(p_info_displayer)
 	signal_caller()
 
 
