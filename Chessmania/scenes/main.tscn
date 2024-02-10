@@ -33,7 +33,6 @@ grow_vertical = 2
 
 [node name="chess_board" type="ColorRect" parent="chess_container"]
 layout_mode = 2
-focus_next = NodePath("../../piece_info_displayer")
 color = Color(0.431373, 0.431373, 0.431373, 1)
 
 [node name="chess_grid" type="GridContainer" parent="chess_container/chess_board"]
@@ -59,3 +58,10 @@ offset_top = 27.0
 offset_right = -10.0
 offset_bottom = 177.0
 grow_horizontal = 0
+
+[node name="action_menu_container" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 191.0
+offset_right = 1070.0
+offset_bottom = 301.0

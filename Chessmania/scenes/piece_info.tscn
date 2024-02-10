@@ -30,6 +30,7 @@ tab_focus_mode = 0
 
 [node name="HP" type="TabBar" parent="TabContainer"]
 layout_mode = 2
+focus_mode = 0
 
 [node name="selected_p" type="RichTextLabel" parent="TabContainer/HP"]
 layout_mode = 0

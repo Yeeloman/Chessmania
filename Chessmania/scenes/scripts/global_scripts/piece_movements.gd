@@ -345,6 +345,9 @@ func _on_piece_move():
 					GV.piece_array[(GV.prev_posx*8)+GV.prev_posy] = 0
 					GV.piece_array[(GV.posx*8)+GV.posy] = GV.piece_active
 					_mini_hide_move() # to hide move after the piece is moved
+					GV.created_menu.show()
+					GV.created_menu.get_node('container/move_action').grab_focus()
+					GV.created_menu.get_node('container/move_action').disabled = true
 	pass
 
 
@@ -354,39 +357,6 @@ func _mini_hide_move():
 		GV.colored_array[i].get_node("mov").color = GV.transparent
 	GV.colored_array.clear()
 
-
-func find_duplicates(arr: Array) -> Array:
-	var frequency_map = {}
-	var duplicates = []
-	for num in arr:
-		if frequency_map.has(num):
-			frequency_map[num] += 1
-		else:
-			frequency_map[num] = 1
-	for num in frequency_map.keys():  
-		var frequency = frequency_map[num]  
-		if frequency > 1:
-			duplicates.append(num)
-	return duplicates
-	
-func find_non_duplicates(arr: Array) -> Array:
-	var frequency_map = {}
-	var non_duplicates = []
-
-	# Build frequency map
-	for num in arr:
-		if frequency_map.has(num):
-			frequency_map[num] += 1
-		else:
-			frequency_map[num] = 1
-
-	# Find non-duplicates
-	for num in frequency_map.keys():  # Iterate over keys
-		var frequency = frequency_map[num]  # Access value for the key
-		if frequency == 1:  # If frequency is 1, it's non-duplicate
-			non_duplicates.append(num)
-
-	return non_duplicates
 
 # undo the coloring move changes
 func _on_hide_move():

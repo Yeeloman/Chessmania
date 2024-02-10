@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbsuwnvkaeo76"]
+
+[ext_resource type="Script" path="res://scenes/scripts/action_menu.gd" id="1_885ax"]
+
+[node name="action_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -830.0
+offset_bottom = -610.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_885ax")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="attack_action" type="Button" parent="container"]
+layout_mode = 2
+focus_next = NodePath("../move_action")
+focus_mode = 1
+text = "			Attack"
+
+[node name="move_action" type="Button" parent="container"]
+layout_mode = 2
+focus_next = NodePath("../end_turn")
+focus_mode = 1
+text = "			Move"
+
+[node name="end_turn" type="Button" parent="container"]
+layout_mode = 2
+focus_next = NodePath("../attack_action")
+focus_mode = 1
+text = "		  End turn"
+
+[connection signal="pressed" from="container/attack_action" to="." method="_on_attack_action_pressed"]
+[connection signal="pressed" from="container/move_action" to="." method="_on_move_action_pressed"]

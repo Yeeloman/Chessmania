@@ -4,6 +4,7 @@ extends Node
 @onready var square = preload("res://scenes/square.tscn")
 @onready var piece_info = preload("res://scenes/piece_info.tscn")
 @onready var player_info = preload("res://scenes/player_info.tscn")
+@onready var action_menu_packed = preload("res://scenes/action_menu.tscn")
 
 
 # creates the locker instance
@@ -59,4 +60,11 @@ func _create_player_displayer(player_info_container):
 	GV.created_player = player_info.instantiate()
 	player_info_container.add_child(GV.created_player)
 	GV.created_player.visible = false
+	pass
+
+#function that creates action menu
+func _create_action_menu(container):
+	GV.created_menu = action_menu_packed.instantiate()
+	container.add_child(GV.created_menu)
+	#GV.created_menu.visible = false
 	pass
