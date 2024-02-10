@@ -34,6 +34,7 @@ func _create_piece(chess_board, piece, location) -> void:
 # function that sets the stats for the pieces
 func _set_stats(p_prototype, p_target) -> void:
 	p_target.HP = p_prototype.HP
+	p_target.cur_hp = p_target.HP
 	p_target.Atk = p_prototype.Atk
 	p_target.Def = p_prototype.Def
 	p_target.Spd = p_prototype.Spd
