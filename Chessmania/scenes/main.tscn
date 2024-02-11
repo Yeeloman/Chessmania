@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/scripts/main.gd" id="1_xix4n"]
 [ext_resource type="Texture2D" uid="uid://dxw100gdy0hnu" path="res://assets/background.jpg" id="2_glwoj"]
-[ext_resource type="Texture2D" uid="uid://ci2ft6rv6mep8" path="res://assets/background_battle.png" id="3_vx6dn"]
+[ext_resource type="Texture2D" uid="uid://d1combvmwab0v" path="res://assets/grass_background.png" id="3_ikc13"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -42,9 +42,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="chess_board" type="TextureRect" parent="chess_container"]
-self_modulate = Color(1, 1, 1, 0.501961)
+clip_contents = true
 layout_mode = 2
-texture = ExtResource("3_vx6dn")
+texture = ExtResource("3_ikc13")
+expand_mode = 1
 stretch_mode = 3
 
 [node name="chess_grid" type="GridContainer" parent="chess_container/chess_board"]
