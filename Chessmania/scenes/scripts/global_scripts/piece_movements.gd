@@ -238,7 +238,6 @@ func _show_rook_move(_arg):
 					move = int(check)
 			else :
 				move = int(((GV.posx+i[0])*8)+(GV.posy+i[1]))
-			print(move)
 			if typeof(move) == TYPE_INT:
 				if move<80 and move>=0 :
 					if typeof(GV.piece_array[move])==typeof(0) :
@@ -301,32 +300,7 @@ func _show_bishop_move(_arg):
 		await get_tree().create_timer(0.1).timeout
 		for el in colored : 
 			GV.colored_array.push_back(el)
-	pass
 
-
-
-
-
-
-
-
-
-func _move_pawn():
-	pass
-func _move_rook():
-	pass
-
-func _move_knight():
-	pass
-
-func _move_bishop():
-	pass
-
-func _move_king():
-	pass
-
-func _move_queen():
-	pass
 
 func _ready():
 	pass
@@ -358,9 +332,12 @@ func _mini_hide_move():
 	GV.colored_array.clear()
 
 
+
 # undo the coloring move changes
 func _on_hide_move():
 	if GV.created_locker.is_active == false:
 		for i in range(GV.colored_array.size()):
 			GV.colored_array[i].get_node("mov").color = GV.transparent
+		
 		GV.colored_array.clear()
+		

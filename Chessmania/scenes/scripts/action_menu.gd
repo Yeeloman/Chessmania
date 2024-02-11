@@ -8,6 +8,7 @@ func _ready():
 		self.get_node('container/attack_action').grab_focus()
 		GV.is_focus = self.get_node('container/attack_action').has_focus()
 		self.get_node('container/move_action').disabled = false
+		self.get_node('container/attack_action').disabled = false
 		$".".show())
 	Signals.connect('hide_menu', func(): 
 		GV.is_focus = self.get_node('container/attack_action').has_focus()
@@ -35,7 +36,9 @@ func _process(_delta):
 
 
 func _on_attack_action_pressed():
-	print(GV.hovered_piece.p_name)
+	GV.is_focus = false
+	self.hide()
+	PA._show_attacks()
 	pass # Replace with function body.
 
 

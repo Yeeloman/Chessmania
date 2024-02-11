@@ -25,6 +25,9 @@ func _process(_delta):
 	await get_tree().create_timer(0.1).timeout
 	HLocker._handle_locker_mov()
 	PieceMovements._on_piece_move()
+	PA._on_attack()
+	if typeof(GV.piece_array[(GV.posx*8)+GV.posy])==TYPE_INT:
+		GV.hovered_piece=null
 
 
 # calls the signals from the ready function
@@ -34,6 +37,8 @@ func signal_caller():
 
 	Signals.connect('locker_active', HLocker._on_locker_active)
 	Signals.connect('locker_passive', HLocker._on_locker_passive)
+	
+	Signals.connect('locker_passive', PA._hide_attack)
 
 # function that colors the squares
 func squares_coloring() -> void:

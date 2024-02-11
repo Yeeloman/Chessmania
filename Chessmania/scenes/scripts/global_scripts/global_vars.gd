@@ -15,6 +15,7 @@ var starting_pos = "rnbqklij/pppppppp/8/8/8/8/8/8/PPPPPPPP/RNBQKLIJ"
 var grid_square_id := []
 var piece_array := []
 var colored_array := []
+var attack_array := []
 
 var created_locker
 var created_displayer
