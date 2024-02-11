@@ -1,5 +1,11 @@
 extends Node
 
+var cur_player
+var player_1 = 1
+var player_2 = 0
+
+var played_pieces = 0
+var played_pieces_array := []
 
 var dark_square = Color("#36454F")
 var light_square = Color("#D3D3D3")
@@ -28,10 +34,11 @@ var piece_active
 var hovered_piece
 
 var is_focus = false
+var action_made = false
+var ESC_help = true
 
 var prev_posx
 var prev_posy
 var posx = 0
 var posy = 3
-var prevpos
 

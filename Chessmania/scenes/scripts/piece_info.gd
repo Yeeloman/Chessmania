@@ -23,6 +23,8 @@ func _process(_delta):
 		#display the hp of the focused piece
 		if GV.hovered_piece:
 			$TabContainer/HP/selected_p.text = GV.hovered_piece.display_name
+			if GV.hovered_piece in GV.played_pieces_array:
+				$TabContainer/HP/selected_p.text += ' - moved'
 			$TabContainer/HP/HP_bar.max_value = GV.hovered_piece.HP
 			$TabContainer/HP/HP_bar.value = GV.hovered_piece.cur_hp
 			$TabContainer/HP/target_HP_bar.visible = false

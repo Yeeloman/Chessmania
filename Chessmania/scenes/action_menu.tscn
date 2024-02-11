@@ -8,7 +8,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -830.0
-offset_bottom = -610.0
+offset_bottom = -584.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_885ax")
@@ -18,26 +18,36 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="attack_action" type="Button" parent="container"]
-layout_mode = 2
-focus_next = NodePath("../move_action")
-focus_mode = 1
-text = "			Attack"
+metadata/_edit_group_ = true
 
 [node name="move_action" type="Button" parent="container"]
 layout_mode = 2
-focus_next = NodePath("../end_turn")
+focus_next = NodePath("../attack_action")
 focus_mode = 1
 text = "			Move"
 
+[node name="attack_action" type="Button" parent="container"]
+layout_mode = 2
+focus_next = NodePath("../end")
+focus_mode = 1
+text = "			Attack"
+
+[node name="end" type="Button" parent="container"]
+layout_mode = 2
+focus_next = NodePath("../end_turn")
+focus_mode = 1
+text = "			end"
+
 [node name="end_turn" type="Button" parent="container"]
 layout_mode = 2
-focus_next = NodePath("../attack_action")
+focus_next = NodePath("../move_action")
 focus_mode = 1
 text = "		  End turn"
 
-[connection signal="pressed" from="container/attack_action" to="." method="_on_attack_action_pressed"]
 [connection signal="pressed" from="container/move_action" to="." method="_on_move_action_pressed"]
+[connection signal="pressed" from="container/attack_action" to="." method="_on_attack_action_pressed"]
+[connection signal="pressed" from="container/end" to="." method="_on_end_pressed"]
+[connection signal="pressed" from="container/end_turn" to="." method="_on_end_turn_pressed"]

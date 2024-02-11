@@ -322,6 +322,7 @@ func _on_piece_move():
 					GV.created_menu.show()
 					GV.created_menu.get_node('container/move_action').grab_focus()
 					GV.created_menu.get_node('container/move_action').disabled = true
+					GV.action_made = true
 	pass
 
 

@@ -6,7 +6,7 @@
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
-color = Color(0, 0, 0, 1)
+color = Color(1, 1, 1, 0)
 script = ExtResource("1_6086g")
 
 [node name="filter" type="ColorRect" parent="."]

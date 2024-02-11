@@ -114,6 +114,10 @@ func _on_attack():
 				if GV.hovered_piece:
 					if el.global_position==GV.hovered_piece.global_position and GV.hovered_piece.p_type!=GV.piece_active.p_type and typeof(GV.hovered_piece)!=TYPE_INT:
 						_damage()
+						GV.created_menu.show()
+						GV.created_menu.get_node('container/attack_action').grab_focus()
+						GV.created_menu.get_node('container/attack_action').disabled = true
+						GV.action_made = true
 
 func _damage():
 	var damage = GV.piece_active.Atk

@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var icon = $icon
 
-var b_pawn_icon = preload("res://assets/BlackPieces/blackPawn.png")
-var w_pawn_icon = preload("res://assets/WhitePieces/whitePawn.png")
+var b_pawn_icon = preload("res://assets/BlackPieces/Bpawn.png")
+var w_pawn_icon = preload("res://assets/WhitePieces/wpawn.png")
 var p_id := -1
 var p_type: int
 var p_name : String

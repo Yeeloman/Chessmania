@@ -10,14 +10,15 @@ func _ready():
 	for i in range(80):
 		CreateFunc._create_square(grid)
 	await get_tree().create_timer(0.1).timeout
-	squares_coloring()
+	#squares_coloring()
 	GV.piece_array.resize(80)
 	GV.piece_array.fill(0)
 	_position_starter(GV.starting_pos)
 	GV.created_locker = CreateFunc._create_locker(chess_board)
-	GV.prevpos = GV.created_locker.global_position
+	#GV.prevpos = GV.created_locker.global_position
 	CreateFunc._create_info_displayer(p_container)
 	CreateFunc._create_action_menu(action_container)
+	GV.cur_player = GV.player_1 #sets the first player to white
 	signal_caller()
 
 
