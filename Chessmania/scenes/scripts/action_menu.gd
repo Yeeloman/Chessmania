@@ -43,7 +43,7 @@ func _on_attack_action_pressed():
 
 
 func _on_move_action_pressed():
-	Signals.emit_signal('move_pressed')
+	#Signals.emit_signal('move_pressed')
 	GV.is_focus = false
 	self.hide()
 	pass # Replace with function body.

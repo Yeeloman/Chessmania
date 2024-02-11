@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpkxfnet3q22v"]
+[gd_scene load_steps=3 format=3 uid="uid://cpkxfnet3q22v"]
 
 [ext_resource type="Script" path="res://scenes/scripts/main.gd" id="1_xix4n"]
+[ext_resource type="Texture2D" uid="uid://dxw100gdy0hnu" path="res://assets/background.jpg" id="2_glwoj"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -16,6 +17,13 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xix4n")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+texture = ExtResource("2_glwoj")
+stretch_mode = 5
 
 [node name="chess_container" type="PanelContainer" parent="."]
 layout_mode = 1
