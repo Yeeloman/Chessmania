@@ -28,7 +28,6 @@ texture = ExtResource("2_glwoj")
 stretch_mode = 5
 
 [node name="chess_container" type="PanelContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,6 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="chess_board" type="TextureRect" parent="chess_container"]
+self_modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
 texture = ExtResource("3_vx6dn")
 stretch_mode = 3
