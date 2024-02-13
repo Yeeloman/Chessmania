@@ -15,3 +15,5 @@ signal end_turn()
 
 signal move_pressed
 signal attack_pressed
+
+signal king_died()

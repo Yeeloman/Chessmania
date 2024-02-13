@@ -126,6 +126,9 @@ func _damage():
 	GV.hovered_piece.cur_hp -= damage
 	print(GV.hovered_piece.cur_hp)
 	if GV.hovered_piece.cur_hp <= 0:
+		if GV.hovered_piece.display_name == "King":
+			Signals.king_died.emit()
+			return
 		await get_tree().create_timer(0.1).timeout
 		GV.hovered_piece.queue_free()
 		GV.hovered_piece = null

@@ -4,7 +4,7 @@ extends Control
 @onready var chess_board = $chess_container/chess_board
 @onready var p_container = $piece_info_displayer
 @onready var action_container = $action_menu_container
-
+var outro_packed = preload("res://scenes/outro.tscn")
 
 func _ready():
 	for i in range(80):
@@ -19,6 +19,7 @@ func _ready():
 	CreateFunc._create_info_displayer(p_container)
 	CreateFunc._create_action_menu(action_container)
 	GV.cur_player = GV.player_1 #sets the first player to white
+	_show_player()
 	signal_caller()
 
 
@@ -27,6 +28,11 @@ func _process(_delta):
 	HLocker._handle_locker_mov()
 	PieceMovements._on_piece_move()
 	PA._on_attack()
+	if Input.is_anything_pressed():
+		%show_player_container.hide()
+	if GV.end_trn_pressed:
+		_show_player()
+		GV.end_trn_pressed = false
 	if typeof(GV.piece_array[(GV.posx*8)+GV.posy])==TYPE_INT:
 		GV.hovered_piece=null
 
@@ -40,7 +46,23 @@ func signal_caller():
 	Signals.connect('locker_passive', HLocker._on_locker_passive)
 	
 	Signals.connect('locker_passive', PA._hide_attack)
+	
+	Signals.king_died.connect(_call_outro)
 
+
+func _call_outro():
+	var outro_scene = outro_packed.instantiate()
+	get_parent().add_child(outro_scene)
+	await get_tree().create_timer(0.1).timeout
+	queue_free()
+
+
+func _show_player():
+	%show_player_container.show()
+	if GV.cur_player == 1:
+		%show_player.text = "Player 1"
+	else: %show_player.text = "Player 2"
+	pass
 # function that colors the squares
 func squares_coloring() -> void:
 	var color_bit = 0

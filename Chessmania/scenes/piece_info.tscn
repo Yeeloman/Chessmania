@@ -20,31 +20,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xvaxk")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 offset_right = 250.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-tab_focus_mode = 0
 
-[node name="HP" type="TabBar" parent="TabContainer"]
+[node name="HP" type="VBoxContainer" parent="TabContainer"]
 layout_mode = 2
-focus_mode = 0
 
-[node name="selected_p" type="RichTextLabel" parent="TabContainer/HP"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 10.0
-offset_right = 226.0
-offset_bottom = 45.0
+[node name="Container" type="Container" parent="TabContainer/HP"]
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="HP_bar" type="TextureProgressBar" parent="TabContainer/HP"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 51.0
-offset_right = 226.0
-offset_bottom = 76.0
+[node name="main_piece" type="VBoxContainer" parent="TabContainer/HP"]
+layout_mode = 2
+
+[node name="selected_p" type="Label" parent="TabContainer/HP/main_piece"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="HP_bar" type="TextureProgressBar" parent="TabContainer/HP/main_piece"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 value = 100.0
 rounded = true
 texture_under = ExtResource("2_jufsv")
@@ -52,24 +55,16 @@ texture_over = ExtResource("3_y6gev")
 texture_progress = ExtResource("4_pptgn")
 
 [node name="target_HP_bar" type="TextureProgressBar" parent="TabContainer/HP"]
-layout_mode = 0
-offset_left = 26.0
-offset_top = 88.0
-offset_right = 226.0
-offset_bottom = 98.0
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 1.5
 value = 100.0
 texture_under = ExtResource("5_ybjld")
 texture_over = ExtResource("6_dtq1o")
 texture_progress = ExtResource("7_x4ifc")
 
-[node name="Stats" type="TabBar" parent="TabContainer"]
-visible = false
+[node name="Container2" type="Container" parent="TabContainer/HP"]
 layout_mode = 2
-
-[node name="stats_display" type="PanelContainer" parent="TabContainer/Stats"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_vertical = 3

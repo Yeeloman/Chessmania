@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtvk4mb484tcr"]
+
+[ext_resource type="Texture2D" uid="uid://dxw100gdy0hnu" path="res://assets/background.jpg" id="1_inccl"]
+[ext_resource type="Script" path="res://scenes/scripts/outro.gd" id="1_y0rrq"]
+
+[node name="outro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y0rrq")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_inccl")
+
+[node name="player_winner_con" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.5
+offset_top = -85.0
+offset_right = 153.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="winner" type="Label" parent="player_winner_con"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(4.15128e-07, 0.281997, 0, 1)
+theme_override_font_sizes/font_size = 75
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quit_button" type="Button" parent="player_winner_con"]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[connection signal="pressed" from="player_winner_con/quit_button" to="." method="_on_quit_button_pressed"]

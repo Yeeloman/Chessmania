@@ -36,7 +36,7 @@ var hovered_piece
 var is_focus = false
 var action_made = false
 var ESC_help = true
-
+var end_trn_pressed = false
 var prev_posx
 var prev_posy
 var posx = 0

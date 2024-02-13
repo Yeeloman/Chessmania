@@ -1,6 +1,7 @@
 extends Control
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# this signals handle if the player moves 3 pieces
@@ -75,9 +76,11 @@ func _on_end_turn_pressed():
 	if GV.cur_player == GV.player_1:
 		GV.cur_player = GV.player_2
 		GV.played_pieces = 0
+		GV.end_trn_pressed = true
 	else:
 		GV.cur_player = GV.player_1
 		GV.played_pieces = 0
+		GV.end_trn_pressed = true
 	hide()
 	_handle_end_turn_locker()
 	GV.played_pieces_array.clear()

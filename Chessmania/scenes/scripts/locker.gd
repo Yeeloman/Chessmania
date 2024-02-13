@@ -42,6 +42,7 @@ func _process(_delta):
 
 
 	if Input.is_action_just_pressed("ESC"):
-		Signals.emit_signal('ESC_show')
-		ESC_not_pushed = false
+		if is_active:
+			Signals.emit_signal('ESC_show')
+			ESC_not_pushed = false
 	pass

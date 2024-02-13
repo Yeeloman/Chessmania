@@ -18,14 +18,14 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xix4n")
-metadata/_edit_group_ = true
 
 [node name="background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1366, 720)
 layout_mode = 0
 offset_right = 1366.0
 offset_bottom = 768.0
 texture = ExtResource("2_glwoj")
-stretch_mode = 5
+stretch_mode = 6
 
 [node name="chess_container" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -42,6 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="chess_board" type="TextureRect" parent="chess_container"]
+self_modulate = Color(1, 1, 1, 0.717647)
 clip_contents = true
 layout_mode = 2
 texture = ExtResource("3_ikc13")
@@ -80,3 +81,27 @@ offset_left = 820.0
 offset_top = 191.0
 offset_right = 1070.0
 offset_bottom = 327.0
+
+[node name="show_player_container" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -75.0
+offset_right = 150.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="show_player" type="Label" parent="show_player_container"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "PLayer 1"
+horizontal_alignment = 1
+vertical_alignment = 1
